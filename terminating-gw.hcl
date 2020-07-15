@@ -1,5 +1,5 @@
 Kind = "terminating-gateway"
-Name = "legacy-services-gateway"
+Name = "rds-mysql-services-gateway"
 Services = [
   {
     Name = "rds-mysql"
