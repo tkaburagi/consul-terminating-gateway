@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: animals-ui
-  datasource:
-    url: ${MYSQL_HOST}
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: rooooot
