@@ -1,3 +1,3 @@
 <kbd>
-  <img src="diagram.png">
+  <img src="diagram-demo.png">
 </kbd>
