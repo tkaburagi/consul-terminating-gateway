@@ -1,0 +1,14 @@
+{
+  "bootstrap_expect": 1,
+  "datacenter": "dc1",
+  "ports" : {
+    "grpc": 8502
+  },
+  "data_dir": "data-dir",
+  "log_level": "DEBUG",
+  "server": true,
+  "ui": true,
+  "connect": {
+    "enabled": true
+  }
+}
