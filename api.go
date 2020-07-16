@@ -7,9 +7,6 @@ import (
     "github.com/jinzhu/gorm"
     _ "github.com/jinzhu/gorm/dialects/mysql"
     "fmt"
-    "net"
-    "strconv"
-    consulapi "github.com/hashicorp/consul/api"
 )
 
 type User struct {
@@ -27,9 +24,9 @@ func (s *User) TableName() string {
 
 func gormConnect() *gorm.DB {
     DBMS     := "mysql"
-    USER     := "root"
-    PASS     := "rooooot"
-    PROTOCOL := "tcp(192.168.100.101:3306)"
+    USER     := "admin"
+    PASS     := "g9x68LZtYpG39IY717XE"
+    PROTOCOL := "tcp(:3306)"
     DBNAME   := "handson"
 
     CONNECT := USER+":"+PASS+"@"+PROTOCOL+"/"+DBNAME
@@ -42,36 +39,6 @@ func gormConnect() *gorm.DB {
 }
 
 func main() {
-    listener, err := net.Listen("tcp", ":0")
-    if err != nil {
-        panic(err)
-    }
-
-    var port_number int = listener.Addr().(*net.TCPAddr).Port+1
-    var port_number_str string
-
-    port_number_str = strconv.Itoa(port_number)
-
-    fmt.Println("Using port:", listener.Addr().(*net.TCPAddr).Port+1)
-
-    config := consulapi.DefaultConfig()
-    consul, err := consulapi.NewClient(config)
-    if err != nil {
-    log.Fatalln(err)
-    }
-    registration := new(consulapi.AgentServiceRegistration)
-    registration.ID = "api-go-"+port_number_str //replace with service id 
-    registration.Name = "api-go" //replace with service name
-    address := "127.0.0.1"
-    registration.Address = address
-    registration.Port = port_number
-    registration.Check = new(consulapi.AgentServiceCheck)
-    registration.Check.HTTP = fmt.Sprintf("http://%s:%v/users",
-    address, port_number_str)
-    registration.Check.Interval = "5s"
-    registration.Check.Timeout = "3s"
-    registration.Check.DeregisterCriticalServiceAfter = "1m"
-    consul.Agent().ServiceRegister(registration)
 
     api := rest.NewApi()
     api.Use(rest.DefaultDevStack...)
@@ -85,7 +52,7 @@ func main() {
 
     api.SetApp(router)
 
-    log.Fatal(http.ListenAndServe(":"+port_number_str, api.MakeHandler()))
+    log.Fatal(http.ListenAndServe(":8080", api.MakeHandler()))
 
     fmt.Println("Exit!!!")
 }
