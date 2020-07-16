@@ -1,0 +1,5 @@
+run/kabuctl/nomadshapshots/UiService.class
+run/kabuctl/nomadshapshots/Version.class
+run/kabuctl/nomadshapshots/NomadShapshotsApplication.class
+run/kabuctl/nomadshapshots/UiController.class
+run/kabuctl/nomadshapshots/User.class

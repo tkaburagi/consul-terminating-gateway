@@ -1,2 +1,4 @@
 memo
 /data-dir/*
+api.go
+/ui-java/*
